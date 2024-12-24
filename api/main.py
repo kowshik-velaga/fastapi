@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, File, UploadFile, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from api.auth import authenticate
 from api.models import SentimentResult
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -6,6 +7,15 @@ import pandas as pd
 from fastapi.responses import JSONResponse
 
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Add your React app's URL here
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 @app.get("/")
 async def root():
