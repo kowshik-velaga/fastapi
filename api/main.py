@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, File, UploadFile, HTTPException
-from auth import authenticate
-from models import SentimentResult
+from api.auth import authenticate
+from api.models import SentimentResult
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import pandas as pd
 from fastapi.responses import JSONResponse
